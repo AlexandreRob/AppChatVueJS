@@ -12,7 +12,7 @@ const io = new Server (httpServer, {
 });
 
 io.on('connection', (socket) => {
-    console.log(`user ${socket.id} is co`)
+    console.log(`user is connected`)
 
     
 
@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
 
 
     socket.on('disconnect', () => {
-        console.log(`user ${socket.id} left`)
+        console.log(`user left`)
     })
 })
 
