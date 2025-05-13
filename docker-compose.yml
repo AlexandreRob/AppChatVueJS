@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backappchat
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backappchat:/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - monreseau
+
+  frontend:
+    build:
+      context: ./frontappchat
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontappchat:/app
+      - /app/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      - VITE_BACKEND_URL=http://localhost:3000
+    restart: unless-stopped
+    networks:
+      - monreseau
+
+networks:
+  monreseau:
+    driver: bridge
