@@ -47,18 +47,18 @@ docker-compose down
 
 ## 💻 Local Development
 
-### Backend
-
-```bash
-cd backappchat
-npm install
-npm run dev
-```
-
 ### Frontend
 
 ```bash
 cd frontappchat
+npm install
+npm run dev
+```
+
+### Backend
+
+```bash
+cd backappchat
 npm install
 node server.js
 ```
