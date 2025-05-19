@@ -7,6 +7,7 @@ services:
       - "3000:3000"
     volumes:
       - ./backappchat:/app
+      - /app/node_modules
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
